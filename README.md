@@ -87,4 +87,4 @@ In this section you can see the list of valid custom properties of the sliding p
  I have a couple features for this library (e.g. listeners, etc.) and I'll add this in the near future! Use my tiny customs with pleasure!
  
  # Conclusion
- Thank you for using if you're doing it! Thanks commonsguy for fundamental materials about Android development. From his book I get basics for this tiny custom lib.
+ Thank you for using if you're doing it! Thanks commonsguy for fundamental materials about Android development. From his book I've got basics for this tiny custom lib.
