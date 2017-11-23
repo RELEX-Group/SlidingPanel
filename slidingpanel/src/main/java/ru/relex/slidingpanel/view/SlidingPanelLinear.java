@@ -13,9 +13,10 @@ import ru.relex.slidingpanel.logic.SlidingPanelAnimator;
 import ru.relex.slidingpanel.utils.Utilities;
 
 /**
- * Created by Turkin A. on 13.11.2017.
+ * Custom container-view class.
+ *
+ * @author Alexey Turkin, 2017.
  */
-
 public class SlidingPanelLinear extends LinearLayout {
 
     //Attributes
@@ -31,6 +32,12 @@ public class SlidingPanelLinear extends LinearLayout {
         super(context);
     }
 
+    /**
+     * Default constructor for this custom view class.
+     *
+     * @param context - activity or application context for obtaining custom attributes.
+     * @param attrs   - AttributeSet parameter which allows to obtain attributes and use them in java code.
+     */
     public SlidingPanelLinear(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
 
@@ -47,8 +54,18 @@ public class SlidingPanelLinear extends LinearLayout {
         fadeAnimation = AnimationUtils.loadAnimation(context, R.anim.fade);
     }
 
+    /**
+     * Plays whole sliding animation for this custom view using SlidingPanelAnimator object inside.
+     */
     public void slide() {
         isOnTheScreen = !isOnTheScreen;
+        if (isOnTheScreen) {
+            setFocusable(true);
+            setFocusableInTouchMode(true);
+            setClickable(true);
+        } else {
+            this.clearFocus();
+        }
         SlidingPanelAnimator animator = new SlidingPanelAnimator();
         animator.playAnimation(this,
                 attrSpeed, isOnTheScreen, fadeAnimation, attrDirection, attrInterpolator);

@@ -15,12 +15,23 @@ import android.view.animation.OvershootInterpolator;
 import android.view.animation.TranslateAnimation;
 
 /**
- * Created by Turkin A. on 14.11.2017.
+ * Class-engine for view animations.
+ *
+ * @author Alexey Turkin, 2017.
  */
-
 public final class SlidingPanelAnimator {
 
-    public void playAnimation(final View targetSettingsPanel,
+    /**
+     * Plays animation and shows effects for target view.
+     *
+     * @param targetView    - target view for animation actions.
+     * @param speed         - animation speed for translate animation and speed sets on targetView.
+     * @param isOnTheScreen - boolean flag for detecting is targetView on the screen or not.
+     * @param fadeAnimation - Animation object which contains fade animation values.
+     * @param direction     - string value for translate animation direction.
+     * @param interpolator  - string value for AnimationSet's interpolator.
+     */
+    public void playAnimation(final View targetView,
                               int speed,
                               boolean isOnTheScreen,
                               Animation fadeAnimation,
@@ -31,15 +42,15 @@ public final class SlidingPanelAnimator {
         AnimationSet animationSet = setInterpolator(interpolator);
 
         if (isOnTheScreen) {
-            targetSettingsPanel.setVisibility(View.VISIBLE);
-            targetSettingsPanel.setFocusable(true);
-            targetSettingsPanel.setFocusableInTouchMode(true);
+            targetView.setVisibility(View.VISIBLE);
+            targetView.setFocusable(true);
+            targetView.setFocusableInTouchMode(true);
 
-            translateAnimation = (TranslateAnimation) setEnterDirectionTranslateAnimation(targetSettingsPanel, direction);
+            translateAnimation = (TranslateAnimation) setEnterDirectionTranslateAnimation(targetView, direction);
         } else {
-            targetSettingsPanel.setFocusable(false);
-            targetSettingsPanel.setFocusableInTouchMode(false);
-            translateAnimation = (TranslateAnimation) setExitDirectionTranslateAnimation(targetSettingsPanel, direction);
+            targetView.setFocusable(false);
+            targetView.setFocusableInTouchMode(false);
+            translateAnimation = (TranslateAnimation) setExitDirectionTranslateAnimation(targetView, direction);
             translateAnimation.setAnimationListener(new Animation.AnimationListener() {
                 @Override
                 public void onAnimationStart(Animation animation) {
@@ -48,7 +59,7 @@ public final class SlidingPanelAnimator {
 
                 @Override
                 public void onAnimationEnd(Animation animation) {
-                    targetSettingsPanel.setVisibility(View.INVISIBLE);
+                    targetView.setVisibility(View.INVISIBLE);
                 }
 
                 @Override
@@ -61,9 +72,16 @@ public final class SlidingPanelAnimator {
 
         animationSet.addAnimation(translateAnimation);
         animationSet.setDuration(speed);
-        targetSettingsPanel.startAnimation(animationSet);
+        targetView.startAnimation(animationSet);
     }
 
+    /**
+     * Sets  the enter direction of translate animation for target view.
+     *
+     * @param targetView - apply direction to this view.
+     * @param direction  - string value for animation's direction.
+     * @return animation object with direction values.
+     */
     private Animation setEnterDirectionTranslateAnimation(View targetView,
                                                           String direction) {
         Animation translateAnimation;
@@ -92,6 +110,13 @@ public final class SlidingPanelAnimator {
         return translateAnimation;
     }
 
+    /**
+     * Sets the exit direction of translate animation for target view.
+     *
+     * @param targetView - apply direction to this view.
+     * @param direction  - string value for animation's direction.
+     * @return animation object with direction values.
+     */
     private Animation setExitDirectionTranslateAnimation(View targetView,
                                                          String direction) {
         Animation translateAnimation;
@@ -120,6 +145,12 @@ public final class SlidingPanelAnimator {
         return translateAnimation;
     }
 
+    /**
+     * Sets interpolator to AnimationSet object.
+     *
+     * @param interpolator - string value, responsible for setting concrete interpolator to AnimationSet object.
+     * @return AnimationSet object with applied interpolator.
+     */
     private AnimationSet setInterpolator(String interpolator) {
         AnimationSet animationSet = new AnimationSet(true);
 

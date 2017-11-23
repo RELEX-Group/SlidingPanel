@@ -12,9 +12,10 @@ import ru.relex.slidingpanel.logic.SlidingPanelAnimator;
 import ru.relex.slidingpanel.utils.Utilities;
 
 /**
- * Created by Turkin A. on 13.11.2017.
+ * Custom container-view class.
+ *
+ * @author Alexey Turkin, 2017.
  */
-
 public class SlidingPanelConstraint extends ConstraintLayout {
 
     //Attributes
@@ -30,6 +31,12 @@ public class SlidingPanelConstraint extends ConstraintLayout {
         super(context);
     }
 
+    /**
+     * Default constructor for this custom view class.
+     *
+     * @param context - activity or application context for obtaining custom attributes.
+     * @param attrs   - AttributeSet parameter which allows to obtain attributes and use them in java code.
+     */
     public SlidingPanelConstraint(Context context, AttributeSet attrs) {
         super(context, attrs);
 
@@ -44,6 +51,9 @@ public class SlidingPanelConstraint extends ConstraintLayout {
         fadeAnimation = AnimationUtils.loadAnimation(context, R.anim.fade);
     }
 
+    /**
+     * Plays whole sliding animation for this custom view using SlidingPanelAnimator object inside.
+     */
     public void slide() {
         isOnTheScreen = !isOnTheScreen;
         if (isOnTheScreen) {

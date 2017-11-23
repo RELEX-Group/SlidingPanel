@@ -1,18 +1,25 @@
 package ru.relex.slidingpanel.utils;
 
 /**
- * Created by Turkin A. on 14.11.2017.
+ * Class with utilities. Contains default constant values.
+ *
+ * @author Alexey Turkin, 2017.
  */
-
 public final class Utilities {
 
-    //Speed in ms
+    /**
+     * Constructor for making this class singleton.
+     */
+    private Utilities() {
+    }
+
+    //Default speed in ms
     public static final int DEFAULT_ANIMATION_SPEED = 500;
 
-    //Interpolator
+    //Default interpolator
     public static final String DEFAULT_INTERPOLATOR = "linear";
 
-    //Direction
+    //Default direction
     public static final String DEFAULT_DIRECTION = "bottomToTop";
 
 }
