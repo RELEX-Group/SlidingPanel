@@ -1,3 +1,5 @@
+[![](https://jitpack.io/v/RELEX-Group/SlidingPanel.svg)](https://jitpack.io/#RELEX-Group/SlidingPanel)
+
 # SlidingPanel
 Use this sliding panel in your android projects with pleasure!
 
@@ -23,7 +25,7 @@ Add it in your build.gradle:
   in the local build.gradle:
   
       dependencies {
-        compile 'com.github.RELEX-Group:SlidingPanel:0.1'
+        compile 'com.github.RELEX-Group:SlidingPanel:0.2'
       }
 
 # HOW to use?
